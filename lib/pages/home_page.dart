@@ -11,9 +11,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List gradeList = [
     ["Subject", 3.0, 1.0],
-    ["Subject", 3.0, 1.0],
-    ["Subject", 3.0, 1.0],
-    ["Subject", 3.0, 1.0],
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,6 +31,11 @@ class _HomePageState extends State<HomePage> {
             units: gradeList[index][2],
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.blueAccent,
+        child: Icon(Icons.add),
       ),
     );
   }
