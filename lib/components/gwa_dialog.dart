@@ -7,10 +7,17 @@ class GeneralWeightedAverageDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Grade", textAlign: TextAlign.center),
+      title: Align(
+        alignment: Alignment.center,
+        child: Text("General Weighted Average", textAlign: TextAlign.center),
+      ),
       content: SizedBox(
         height: 150,
-        child: Column(children: [Text("Your GWA is: "), Text("$GWA")]),
+        child: Text(
+          "$GWA",
+          style: TextStyle(fontSize: 50),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
