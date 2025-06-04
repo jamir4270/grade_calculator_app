@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:grade_calculator_app/components/grade_dialog_box.dart';
 import 'package:grade_calculator_app/components/grade_tile.dart';
 import 'package:grade_calculator_app/components/gwa_dialog.dart';
+import 'package:grade_calculator_app/database/database.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,20 +14,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _myBox = Hive.box("myBox");
+  GradeDataBase GradeDB = GradeDataBase();
+
+  @override
+  void initState() {
+    if (_myBox.get("GRADELIST") == null) {
+      GradeDB.intializeMockData();
+    } else {
+      GradeDB.loadData();
+    }
+    super.initState();
+  }
+
   final subjectController = TextEditingController();
   final unitsController = TextEditingController();
   final gradeController = TextEditingController();
 
   void saveNewGrade(String subject, double units, double grade) {
     setState(() {
-      gradeList.add([subject, units, grade]);
+      GradeDB.gradeList.add([subject, units, grade]);
     });
     Navigator.of(context).pop();
+    GradeDB.updateDatabase();
   }
-
-  List gradeList = [
-    ["Subject", 3.0, 1.0],
-  ];
 
   void createNewGradeTile() {
     showDialog(
@@ -46,6 +59,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
     clearTextControllers();
+    GradeDB.updateDatabase();
   }
 
   void editGradeTile(
@@ -55,12 +69,13 @@ class _HomePageState extends State<HomePage> {
     double grade,
   ) {
     setState(() {
-      gradeList[index][0] = subjectName;
-      gradeList[index][1] = units;
-      gradeList[index][2] = grade;
+      GradeDB.gradeList[index][0] = subjectName;
+      GradeDB.gradeList[index][1] = units;
+      GradeDB.gradeList[index][2] = grade;
     });
     Navigator.of(context).pop();
     clearTextControllers();
+    GradeDB.updateDatabase();
   }
 
   void clearTextControllers() {
@@ -76,9 +91,10 @@ class _HomePageState extends State<HomePage> {
         double gwa = 0.0;
         double totalUnits = 0.0;
         double sumOfWeightedGrades = 0.0;
-        for (int i = 0; i < gradeList.length; i++) {
-          totalUnits += gradeList[i][1];
-          sumOfWeightedGrades += gradeList[i][1] * gradeList[i][2];
+        for (int i = 0; i < GradeDB.gradeList.length; i++) {
+          totalUnits += GradeDB.gradeList[i][1];
+          sumOfWeightedGrades +=
+              GradeDB.gradeList[i][1] * GradeDB.gradeList[i][2];
         }
         gwa = sumOfWeightedGrades / totalUnits;
         return GeneralWeightedAverageDialog(GWA: gwa);
@@ -90,9 +106,9 @@ class _HomePageState extends State<HomePage> {
     showDialog(
       context: context,
       builder: (context) {
-        subjectController.text = gradeList[index][0];
-        unitsController.text = gradeList[index][1].toString();
-        gradeController.text = gradeList[index][2].toString();
+        subjectController.text = GradeDB.gradeList[index][0];
+        unitsController.text = GradeDB.gradeList[index][1].toString();
+        gradeController.text = GradeDB.gradeList[index][2].toString();
 
         return GradeDialogBox(
           subjectTextController: subjectController,
@@ -113,8 +129,9 @@ class _HomePageState extends State<HomePage> {
 
   void deleteTile(int index) {
     setState(() {
-      gradeList.removeAt(index);
+      GradeDB.gradeList.removeAt(index);
     });
+    GradeDB.updateDatabase();
   }
 
   @override
@@ -138,12 +155,12 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: ListView.builder(
-        itemCount: gradeList.length,
+        itemCount: GradeDB.gradeList.length,
         itemBuilder: (context, index) {
           return GradeTile(
-            subjectName: gradeList[index][0],
-            units: gradeList[index][1],
-            grade: gradeList[index][2],
+            subjectName: GradeDB.gradeList[index][0],
+            units: GradeDB.gradeList[index][1],
+            grade: GradeDB.gradeList[index][2],
             onGradeTileTap: () {
               fetchGrade(index);
             },
