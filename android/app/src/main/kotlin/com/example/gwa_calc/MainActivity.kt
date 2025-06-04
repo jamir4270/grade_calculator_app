@@ -1,4 +1,4 @@
-package com.example.grade_calculator_app
+package com.oharadev.gwa_calc
 
 import io.flutter.embedding.android.FlutterActivity
 

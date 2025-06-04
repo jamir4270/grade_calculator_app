@@ -48,6 +48,11 @@ class _HomePageState extends State<HomePage> {
           unitsTextController: unitsController,
           gradeTextController: gradeController,
           onSavePressed: () {
+            checkGradeAndUnits(
+              double.parse(gradeController.text),
+              double.parse(unitsController.text),
+            );
+
             String subject = subjectController.text;
             double? units = double.parse(unitsController.text);
             double? grade = double.parse(gradeController.text);
@@ -116,6 +121,11 @@ class _HomePageState extends State<HomePage> {
           gradeTextController: gradeController,
           onCancelPressed: () => Navigator.of(context).pop(),
           onSavePressed: () {
+            checkGradeAndUnits(
+              double.parse(gradeController.text),
+              double.parse(unitsController.text),
+            );
+
             String subjectName = subjectController.text;
             double? units = double.parse(unitsController.text);
             double? grade = double.parse(gradeController.text);
@@ -132,6 +142,15 @@ class _HomePageState extends State<HomePage> {
       GradeDB.gradeList.removeAt(index);
     });
     GradeDB.updateDatabase();
+  }
+
+  void checkGradeAndUnits(double grade, double units) {
+    if (grade > 5.0 || grade < 1.0) {
+      gradeController.clear();
+    }
+    if (units > 6.0 || units < 1.0) {
+      unitsController.clear();
+    }
   }
 
   @override
