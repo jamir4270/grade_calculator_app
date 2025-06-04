@@ -1,8 +1,5 @@
 # GWACalc
 
-![GWACalc App Screenshot](screenshots/ss1.jpg)
-*(Note: Ensure the filename in `screenshots/` is `ss1.jpg` or adjust the path accordingly.)*
-
 ---
 
 ## 📚 About GWACalc
