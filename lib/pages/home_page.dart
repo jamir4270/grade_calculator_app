@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Grade Calculator"),
+        title: Text("GWACalc"),
         backgroundColor: Colors.blue[200],
         actions: [
           Padding(
