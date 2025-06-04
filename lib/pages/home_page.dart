@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grade_calculator_app/components/grade_dialog_box.dart';
 import 'package:grade_calculator_app/components/grade_tile.dart';
-import 'package:grade_calculator_app/components/my_button.dart';
+import 'package:grade_calculator_app/components/gwa_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -47,7 +47,24 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void onCalculatePressed() {}
+  void onCalculatePressed() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        double gwa = 0.0;
+        double totalUnits = 0.0;
+        double sumOfWeightedGrades = 0.0;
+        for (int i = 0; i < gradeList.length; i++) {
+          totalUnits += gradeList[i][1];
+          sumOfWeightedGrades += gradeList[i][1] * gradeList[i][2];
+        }
+        gwa = sumOfWeightedGrades / totalUnits;
+        return GeneralWeightedAverageDialog(GWA: gwa);
+      },
+    );
+  }
+
+  void fetchGrade() {}
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +93,7 @@ class _HomePageState extends State<HomePage> {
             subjectName: gradeList[index][0],
             units: gradeList[index][1],
             grade: gradeList[index][2],
+            onGradeTileTap: fetchGrade,
           );
         },
       ),
