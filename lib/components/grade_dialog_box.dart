@@ -23,7 +23,7 @@ class GradeDialogBox extends StatelessWidget {
     return AlertDialog(
       title: Text("Add New Grade", textAlign: TextAlign.center),
       content: SizedBox(
-        height: 250,
+        height: 270,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -32,6 +32,7 @@ class GradeDialogBox extends StatelessWidget {
                 Text("Subject: "),
                 Expanded(
                   child: TextField(
+                    maxLength: 10,
                     controller: subjectTextController,
                     decoration: InputDecoration(
                       hintText: "Subject",
