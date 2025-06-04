@@ -4,8 +4,8 @@ class GradeTile extends StatelessWidget {
   GradeTile({
     super.key,
     required this.subjectName,
-    required this.grade,
     required this.units,
+    required this.grade,
   });
 
   final String subjectName;
