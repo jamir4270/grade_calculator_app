@@ -49,7 +49,7 @@ class GradeDialogBox extends StatelessWidget {
                   child: TextField(
                     controller: unitsTextController,
                     decoration: InputDecoration(
-                      hintText: "3.0...",
+                      hintText: "1.0 - 6.0",
                       hintStyle: TextStyle(color: Colors.grey.shade400),
                     ),
                   ),
@@ -63,7 +63,7 @@ class GradeDialogBox extends StatelessWidget {
                   child: TextField(
                     controller: gradeTextController,
                     decoration: InputDecoration(
-                      hintText: "1.0...",
+                      hintText: "1.0 - 5.0",
                       hintStyle: TextStyle(color: Colors.grey.shade400),
                     ),
                   ),
