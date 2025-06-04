@@ -7,6 +7,7 @@ class GradeTile extends StatelessWidget {
     required this.units,
     required this.grade,
     required this.onGradeTileTap,
+    required this.onExitPressed,
   });
 
   final String subjectName;
@@ -14,6 +15,7 @@ class GradeTile extends StatelessWidget {
   final double grade;
 
   VoidCallback onGradeTileTap;
+  VoidCallback onExitPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -29,31 +31,56 @@ class GradeTile extends StatelessWidget {
             color: Colors.blueGrey,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 15.0,
+                  right: 15.0,
+                  bottom: 15.0,
+                ),
+                child: Column(
                   children: [
-                    Text(
-                      subjectName,
-                      style: TextStyle(fontSize: 25),
-                      textAlign: TextAlign.center,
+                    Flexible(child: Container()),
+                    Flexible(
+                      flex: 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(subjectName, style: TextStyle(fontSize: 40)),
+                          Column(
+                            children: [
+                              Text(
+                                "Grade",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 15),
+                              ),
+                              Text("$grade", style: TextStyle(fontSize: 30)),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    Text("Units: $units", style: TextStyle(fontSize: 20)),
+                    Flexible(
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          "Units: $units",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Grade", style: TextStyle(fontSize: 15)),
-                    Text("$grade", style: TextStyle(fontSize: 40)),
-                  ],
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  onPressed: onExitPressed,
+                  icon: Icon(Icons.close_rounded, color: Colors.deepOrange),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

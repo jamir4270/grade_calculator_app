@@ -45,6 +45,28 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
+    clearTextControllers();
+  }
+
+  void editGradeTile(
+    int index,
+    String subjectName,
+    double units,
+    double grade,
+  ) {
+    setState(() {
+      gradeList[index][0] = subjectName;
+      gradeList[index][1] = units;
+      gradeList[index][2] = grade;
+    });
+    Navigator.of(context).pop();
+    clearTextControllers();
+  }
+
+  void clearTextControllers() {
+    subjectController.clear();
+    unitsController.clear();
+    gradeController.clear();
   }
 
   void onCalculatePressed() {
@@ -64,7 +86,36 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void fetchGrade() {}
+  void fetchGrade(int index) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        subjectController.text = gradeList[index][0];
+        unitsController.text = gradeList[index][1].toString();
+        gradeController.text = gradeList[index][2].toString();
+
+        return GradeDialogBox(
+          subjectTextController: subjectController,
+          unitsTextController: unitsController,
+          gradeTextController: gradeController,
+          onCancelPressed: () => Navigator.of(context).pop(),
+          onSavePressed: () {
+            String subjectName = subjectController.text;
+            double? units = double.parse(unitsController.text);
+            double? grade = double.parse(gradeController.text);
+
+            editGradeTile(index, subjectName, units, grade);
+          },
+        );
+      },
+    );
+  }
+
+  void deleteTile(int index) {
+    setState(() {
+      gradeList.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +144,12 @@ class _HomePageState extends State<HomePage> {
             subjectName: gradeList[index][0],
             units: gradeList[index][1],
             grade: gradeList[index][2],
-            onGradeTileTap: fetchGrade,
+            onGradeTileTap: () {
+              fetchGrade(index);
+            },
+            onExitPressed: () {
+              deleteTile(index);
+            },
           );
         },
       ),
