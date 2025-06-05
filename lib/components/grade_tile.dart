@@ -47,7 +47,14 @@ class GradeTile extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(subjectName, style: TextStyle(fontSize: 40)),
+                          Expanded(
+                            child: Text(
+                              subjectName,
+                              style: TextStyle(fontSize: 40),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                           Column(
                             children: [
                               Text(

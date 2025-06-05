@@ -32,10 +32,9 @@ class GradeDialogBox extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text("Subject: "),
+                Text("Subject: ", overflow: TextOverflow.ellipsis, maxLines: 1),
                 Expanded(
                   child: TextField(
-                    maxLength: 10,
                     controller: subjectTextController,
                     decoration: InputDecoration(
                       hintText: "Subject",

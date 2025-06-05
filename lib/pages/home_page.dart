@@ -48,10 +48,9 @@ class _HomePageState extends State<HomePage> {
           unitsTextController: unitsController,
           gradeTextController: gradeController,
           onSavePressed: () {
-            checkGradeAndUnits(
-              double.parse(gradeController.text),
-              double.parse(unitsController.text),
-            );
+            checkSubjectName(subjectController.text);
+            checkUnits(unitsController.text);
+            checkGrade(gradeController.text);
 
             String subject = subjectController.text;
             double? units = double.parse(unitsController.text);
@@ -90,21 +89,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   void onCalculatePressed() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        double gwa = 0.0;
-        double totalUnits = 0.0;
-        double sumOfWeightedGrades = 0.0;
-        for (int i = 0; i < GradeDB.gradeList.length; i++) {
-          totalUnits += GradeDB.gradeList[i][1];
-          sumOfWeightedGrades +=
-              GradeDB.gradeList[i][1] * GradeDB.gradeList[i][2];
-        }
-        gwa = sumOfWeightedGrades / totalUnits;
-        return GeneralWeightedAverageDialog(GWA: gwa);
-      },
-    );
+    if (GradeDB.gradeList.isEmpty) {
+      displaySnackBar("There are no grades to calculate.");
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          double gwa = 0.0;
+          double totalUnits = 0.0;
+          double sumOfWeightedGrades = 0.0;
+          for (int i = 0; i < GradeDB.gradeList.length; i++) {
+            totalUnits += GradeDB.gradeList[i][1];
+            sumOfWeightedGrades +=
+                GradeDB.gradeList[i][1] * GradeDB.gradeList[i][2];
+          }
+          gwa = sumOfWeightedGrades / totalUnits;
+          return GeneralWeightedAverageDialog(GWA: gwa);
+        },
+      );
+    }
   }
 
   void fetchGrade(int index) {
@@ -121,10 +124,9 @@ class _HomePageState extends State<HomePage> {
           gradeTextController: gradeController,
           onCancelPressed: () => Navigator.of(context).pop(),
           onSavePressed: () {
-            checkGradeAndUnits(
-              double.parse(gradeController.text),
-              double.parse(unitsController.text),
-            );
+            checkSubjectName(subjectController.text);
+            checkUnits(unitsController.text);
+            checkGrade(gradeController.text);
 
             String subjectName = subjectController.text;
             double? units = double.parse(unitsController.text);
@@ -145,13 +147,43 @@ class _HomePageState extends State<HomePage> {
     GradeDB.updateDatabase();
   }
 
-  void checkGradeAndUnits(double grade, double units) {
-    if (grade > 5.0 || grade < 1.0) {
+  void checkSubjectName(String subjectName) {
+    if (double.tryParse(subjectName) != null) {
+      subjectController.clear();
+      displaySnackBar("Invalid subject name.");
+    }
+  }
+
+  void checkGrade(String gradeText) {
+    if (double.tryParse(gradeText) == null) {
       gradeController.clear();
+      displaySnackBar("Invalid grade input. Input must be numbers.");
+      return;
     }
-    if (units > 6.0 || units < 1.0) {
+
+    if (double.parse(gradeText) > 5.0 || double.parse(gradeText) < 1.0) {
+      gradeController.clear();
+      displaySnackBar("Invalid grade input. Adhere to the given range.");
+    }
+  }
+
+  void checkUnits(String unitsText) {
+    if (double.tryParse(unitsText) == null) {
       unitsController.clear();
+      displaySnackBar("Invalid units input. Input must be numbers.");
+      return;
     }
+
+    if (double.parse(unitsText) > 5.0 || double.parse(unitsText) < 1.0) {
+      unitsController.clear();
+      displaySnackBar("Invalid units input. Adhere to the given range.");
+    }
+  }
+
+  void displaySnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), duration: Duration(milliseconds: 500)),
+    );
   }
 
   @override
