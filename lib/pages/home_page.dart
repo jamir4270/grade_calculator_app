@@ -124,15 +124,18 @@ class _HomePageState extends State<HomePage> {
           gradeTextController: gradeController,
           onCancelPressed: () => Navigator.of(context).pop(),
           onSavePressed: () {
-            checkSubjectName(subjectController.text);
-            checkUnits(unitsController.text);
-            checkGrade(gradeController.text);
+            if (checkSubjectName(subjectController.text)) {
+              checkUnits(unitsController.text);
+              checkGrade(gradeController.text);
 
-            String subjectName = subjectController.text;
-            double? units = double.parse(unitsController.text);
-            double? grade = double.parse(gradeController.text);
+              String subjectName = subjectController.text;
+              double? units = double.parse(unitsController.text);
+              double? grade = double.parse(gradeController.text);
 
-            editGradeTile(index, subjectName, units, grade);
+              editGradeTile(index, subjectName, units, grade);
+            } else {
+              return;
+            }
           },
           titleName: "Edit Grade",
         );
@@ -147,11 +150,13 @@ class _HomePageState extends State<HomePage> {
     GradeDB.updateDatabase();
   }
 
-  void checkSubjectName(String subjectName) {
-    if (double.tryParse(subjectName) != null) {
+  bool checkSubjectName(String subjectName) {
+    if (double.tryParse(subjectName) != null || subjectName.isEmpty) {
       subjectController.clear();
       displaySnackBar("Invalid subject name.");
+      return false;
     }
+    return true;
   }
 
   void checkGrade(String gradeText) {
