@@ -21,7 +21,7 @@ GWACalc takes the hassle out of tracking your academic performance, giving you a
 
 To install GWACalc on your device, please visit this link and dowload and install the latest version of GWACalc:
 
-[GWACalc Install]((https://drive.google.com/drive/u/1/folders/1NX3kSLhHYm9qzO72HOpNAWMdi6gm6j_l))
+[https://drive.google.com/drive/u/1/folders/1NX3kSLhHYm9qzO72HOpNAWMdi6gm6j_l](https://drive.google.com/drive/u/1/folders/1NX3kSLhHYm9qzO72HOpNAWMdi6gm6j_l)
 
 ---
 
