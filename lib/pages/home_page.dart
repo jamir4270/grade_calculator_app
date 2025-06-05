@@ -132,6 +132,7 @@ class _HomePageState extends State<HomePage> {
 
             editGradeTile(index, subjectName, units, grade);
           },
+          titleName: "Edit Grade",
         );
       },
     );
@@ -162,12 +163,16 @@ class _HomePageState extends State<HomePage> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextButton(
+            child: ElevatedButton(
               onPressed: onCalculatePressed,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xffebebeb),
+                foregroundColor: Color(0xffff6700),
+              ),
               child: Text(
                 "Calculate",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.deepOrange, fontSize: 20),
+                style: TextStyle(fontSize: 20),
               ),
             ),
           ),

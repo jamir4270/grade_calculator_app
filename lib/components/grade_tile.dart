@@ -75,9 +75,32 @@ class GradeTile extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.topRight,
-                child: IconButton(
-                  onPressed: onExitPressed,
-                  icon: Icon(Icons.close_rounded, color: Colors.deepOrange),
+                child: SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: IconButton(
+                    onPressed: onExitPressed,
+                    style: IconButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      iconSize: 24,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    icon: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Icon(
+                          Icons.close_rounded,
+                          size: 26,
+                          color: Colors.black,
+                        ),
+                        Icon(
+                          Icons.close_rounded,
+                          size: 20,
+                          color: Color(0xffff6700),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ],

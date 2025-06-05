@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:grade_calculator_app/components/my_button.dart';
 
 class GradeDialogBox extends StatelessWidget {
+  final String titleName;
+
   final subjectTextController;
   final unitsTextController;
   final gradeTextController;
@@ -16,12 +18,13 @@ class GradeDialogBox extends StatelessWidget {
     required this.gradeTextController,
     required this.onCancelPressed,
     required this.onSavePressed,
+    this.titleName = "Add New Grade",
   });
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Add New Grade", textAlign: TextAlign.center),
+      title: Text(titleName, textAlign: TextAlign.center),
       content: SizedBox(
         height: 270,
         child: Column(
