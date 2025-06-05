@@ -182,23 +182,28 @@ class _HomePageState extends State<HomePage> {
 
   void displaySnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), duration: Duration(milliseconds: 500)),
+      SnackBar(
+        content: Text(message, style: TextStyle(color: Color(0xffebebeb))),
+        duration: Duration(milliseconds: 500),
+        backgroundColor: Color(0xff004e98),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffebebeb),
       appBar: AppBar(
-        title: Text("GWACalc"),
-        backgroundColor: Colors.blue[200],
+        title: Text("GWACalc", style: TextStyle(color: Color(0xffebebeb))),
+        backgroundColor: Color(0xff004e98),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
               onPressed: onCalculatePressed,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xffebebeb),
+                overlayColor: Color.fromARGB(255, 85, 40, 11),
                 foregroundColor: Color(0xffff6700),
               ),
               child: Text(
@@ -228,8 +233,8 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewGradeTile,
-        backgroundColor: Colors.blueAccent,
-        child: Icon(Icons.add),
+        backgroundColor: Color(0xffff6700),
+        child: Icon(Icons.add, color: Color(0xffebebeb)),
       ),
     );
   }

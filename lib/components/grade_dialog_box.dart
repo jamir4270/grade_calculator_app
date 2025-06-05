@@ -24,7 +24,12 @@ class GradeDialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(titleName, textAlign: TextAlign.center),
+      title: Text(
+        titleName,
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Color(0xff004e98)),
+      ),
+      backgroundColor: Color(0xffebebeb),
       content: SizedBox(
         height: 270,
         child: Column(
@@ -32,7 +37,12 @@ class GradeDialogBox extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text("Subject: ", overflow: TextOverflow.ellipsis, maxLines: 1),
+                Text(
+                  "Subject: ",
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: TextStyle(color: Color(0xff3a6ea5)),
+                ),
                 Expanded(
                   child: TextField(
                     controller: subjectTextController,
@@ -46,7 +56,7 @@ class GradeDialogBox extends StatelessWidget {
             ),
             Row(
               children: [
-                Text("Units: "),
+                Text("Units: ", style: TextStyle(color: Color(0xff3a6ea5))),
                 Expanded(
                   child: TextField(
                     controller: unitsTextController,
@@ -60,7 +70,7 @@ class GradeDialogBox extends StatelessWidget {
             ),
             Row(
               children: [
-                Text("Grade: "),
+                Text("Grade: ", style: TextStyle(color: Color(0xff3a6ea5))),
                 Expanded(
                   child: TextField(
                     controller: gradeTextController,
@@ -79,12 +89,12 @@ class GradeDialogBox extends StatelessWidget {
                 children: [
                   MyButton(
                     buttonName: "Cancel",
-                    buttonColor: Colors.deepOrange,
+                    buttonColor: Color(0xffff6700),
                     onPressed: onCancelPressed,
                   ),
                   MyButton(
                     buttonName: "Save",
-                    buttonColor: Colors.greenAccent,
+                    buttonColor: Color(0xff004e98),
                     onPressed: onSavePressed,
                   ),
                 ],

@@ -28,7 +28,7 @@ class GradeTile extends StatelessWidget {
           width: 200,
           height: 150,
           decoration: BoxDecoration(
-            color: Colors.blueGrey,
+            color: Color(0xff3a6ea5),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Stack(
@@ -50,7 +50,10 @@ class GradeTile extends StatelessWidget {
                           Expanded(
                             child: Text(
                               subjectName,
-                              style: TextStyle(fontSize: 40),
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: Color(0xffebebeb),
+                              ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -60,9 +63,18 @@ class GradeTile extends StatelessWidget {
                               Text(
                                 "Grade",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 15),
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color(0xffc0c0c0),
+                                ),
                               ),
-                              Text("$grade", style: TextStyle(fontSize: 30)),
+                              Text(
+                                "$grade",
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  color: Color(0xffebebeb),
+                                ),
+                              ),
                             ],
                           ),
                         ],
@@ -73,7 +85,10 @@ class GradeTile extends StatelessWidget {
                         alignment: Alignment.bottomLeft,
                         child: Text(
                           "Units: $units",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Color(0xffc0c0c0),
+                          ),
                         ),
                       ),
                     ),
@@ -98,7 +113,7 @@ class GradeTile extends StatelessWidget {
                         Icon(
                           Icons.close_rounded,
                           size: 26,
-                          color: Colors.black,
+                          color: Color(0xff004e98),
                         ),
                         Icon(
                           Icons.close_rounded,
