@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grade_calculator_app/pages/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class IntroductionPage extends StatelessWidget {
+class IntroductionPage extends StatefulWidget {
   IntroductionPage({super.key});
 
   static const Color primaryOrange = Color(0xffff6700);
@@ -9,6 +10,11 @@ class IntroductionPage extends StatelessWidget {
   static const Color mediumGrey = Color(0xffc0c0c0);
   static const Color darkBlue = Color(0xff004e98);
 
+  @override
+  State<IntroductionPage> createState() => _IntroductionPageState();
+}
+
+class _IntroductionPageState extends State<IntroductionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +25,7 @@ class IntroductionPage extends StatelessWidget {
             Flexible(
               flex: 3,
               child: Container(
-                color: darkBlue,
+                color: IntroductionPage.darkBlue,
                 width: double.infinity,
                 padding: const EdgeInsets.only(left: 24.0),
                 child: Column(
@@ -31,7 +37,7 @@ class IntroductionPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 38,
                         fontWeight: FontWeight.w400,
-                        color: lightGrey,
+                        color: IntroductionPage.lightGrey,
                       ),
                     ),
                     SizedBox(height: 12),
@@ -40,7 +46,7 @@ class IntroductionPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 60,
                         fontWeight: FontWeight.bold,
-                        color: primaryOrange,
+                        color: IntroductionPage.primaryOrange,
                       ),
                     ),
                   ],
@@ -50,7 +56,7 @@ class IntroductionPage extends StatelessWidget {
             Flexible(
               flex: 8,
               child: Container(
-                color: lightGrey,
+                color: IntroductionPage.lightGrey,
                 width: double.infinity,
                 height: double.infinity,
                 padding: const EdgeInsets.symmetric(
@@ -91,13 +97,16 @@ class IntroductionPage extends StatelessWidget {
             Expanded(
               child: TextButton(
                 onPressed: () async {
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setBool('showHome', true);
+
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: darkBlue,
-                  foregroundColor: lightGrey,
+                  backgroundColor: IntroductionPage.darkBlue,
+                  foregroundColor: IntroductionPage.lightGrey,
                   minimumSize: Size.zero,
                   padding: EdgeInsets.zero,
                   shape: const RoundedRectangleBorder(
@@ -126,14 +135,18 @@ class IntroductionPage extends StatelessWidget {
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: primaryOrange,
+            color: IntroductionPage.primaryOrange,
           ),
         ),
         const SizedBox(width: 8),
         Expanded(
           child: Text(
             instructionText,
-            style: const TextStyle(fontSize: 20, color: darkBlue, height: 1.5),
+            style: const TextStyle(
+              fontSize: 20,
+              color: IntroductionPage.darkBlue,
+              height: 1.5,
+            ),
           ),
         ),
       ],
