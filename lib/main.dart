@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grade_calculator_app/pages/home_page.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:grade_calculator_app/pages/intro_page.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: IntroductionPage(),
       theme: ThemeData(primarySwatch: Colors.blue),
     );
   }
