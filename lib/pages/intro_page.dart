@@ -42,7 +42,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                     ),
                     SizedBox(height: 12),
                     Text(
-                      "GWUCalc",
+                      "GWACalc",
                       style: TextStyle(
                         fontSize: 60,
                         fontWeight: FontWeight.bold,
