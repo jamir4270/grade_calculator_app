@@ -48,15 +48,18 @@ class _HomePageState extends State<HomePage> {
           unitsTextController: unitsController,
           gradeTextController: gradeController,
           onSavePressed: () {
-            checkSubjectName(subjectController.text);
-            checkUnits(unitsController.text);
-            checkGrade(gradeController.text);
+            if (checkSubjectName(subjectController.text)) {
+              checkUnits(unitsController.text);
+              checkGrade(gradeController.text);
 
-            String subject = subjectController.text;
-            double? units = double.parse(unitsController.text);
-            double? grade = double.parse(gradeController.text);
+              String subject = subjectController.text;
+              double? units = double.parse(unitsController.text);
+              double? grade = double.parse(gradeController.text);
 
-            saveNewGrade(subject, units, grade);
+              saveNewGrade(subject, units, grade);
+            } else {
+              return;
+            }
           },
           onCancelPressed: () => Navigator.of(context).pop(),
         );

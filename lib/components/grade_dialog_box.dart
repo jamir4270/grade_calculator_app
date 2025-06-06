@@ -50,6 +50,7 @@ class GradeDialogBox extends StatelessWidget {
                       hintText: "Subject",
                       hintStyle: TextStyle(color: Colors.grey.shade400),
                     ),
+                    keyboardType: TextInputType.text,
                   ),
                 ),
               ],
@@ -64,6 +65,10 @@ class GradeDialogBox extends StatelessWidget {
                       hintText: "1.0 - 6.0",
                       hintStyle: TextStyle(color: Colors.grey.shade400),
                     ),
+                    keyboardType: TextInputType.numberWithOptions(
+                      signed: false,
+                      decimal: true,
+                    ),
                   ),
                 ),
               ],
@@ -77,6 +82,10 @@ class GradeDialogBox extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: "1.0 - 5.0",
                       hintStyle: TextStyle(color: Colors.grey.shade400),
+                    ),
+                    keyboardType: TextInputType.numberWithOptions(
+                      signed: false,
+                      decimal: true,
                     ),
                   ),
                 ),
