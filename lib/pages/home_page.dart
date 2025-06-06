@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           unitsTextController: unitsController,
           gradeTextController: gradeController,
           onSavePressed: () {
-            if (checkSubjectName(subjectController.text)) {
+            if (checkSubjectName(subjectController.text, -1)) {
               checkUnits(unitsController.text);
               checkGrade(gradeController.text);
 
@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
           gradeTextController: gradeController,
           onCancelPressed: () => Navigator.of(context).pop(),
           onSavePressed: () {
-            if (checkSubjectName(subjectController.text)) {
+            if (checkSubjectName(subjectController.text, index)) {
               checkUnits(unitsController.text);
               checkGrade(gradeController.text);
 
@@ -153,11 +153,14 @@ class _HomePageState extends State<HomePage> {
     GradeDB.updateDatabase();
   }
 
-  bool checkSubjectName(String subjectName) {
+  bool checkSubjectName(String subjectName, int index) {
     for (int i = 0; i < GradeDB.gradeList.length; i++) {
       if (subjectName == GradeDB.gradeList[i][0]) {
-        displaySnackBar("Subject already exists.");
-        return false;
+        if (i != index) {
+          displaySnackBar("Subject already exists.");
+          return false;
+        }
+        return true;
       }
     }
 
