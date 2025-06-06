@@ -60,20 +60,6 @@ If you wish to build GWACalc from the source code, follow these steps:
     ```
     The generated APK will be located in `build/app/outputs/flutter-apk/`.
 
-6.  **Build Release AppBundle (Android - for Play Store):**
-    To create an Android App Bundle for publishing to Google Play Store:
-    ```bash
-    flutter build appbundle --release
-    ```
-    The generated AAB will be located in `build/app/outputs/bundle/release/`.
-
-7.  **Build iOS Release (Requires macOS and Xcode):**
-    To build an iOS release (IPA file), ensure you have Xcode set up and run:
-    ```bash
-    flutter build ipa --release
-    ```
-    The generated IPA will be located in `build/ios/archive/`.
-
 ---
 
 ## 🔑 Credits
