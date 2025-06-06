@@ -19,10 +19,9 @@ GWACalc takes the hassle out of tracking your academic performance, giving you a
 
 ## 🚀 Installation
 
-To install GWACalc on your device, please visit our official installation guide:
+To install GWACalc on your device, please visit this link and dowload and install the latest version of GWACalc:
 
-[https://example.com/gwacalc-installation](https://example.com/gwacalc-installation)
-*(Note: This is a placeholder URL. Please update it with your actual installation guide link.)*
+[https://drive.google.com/drive/u/1/folders/1NX3kSLhHYm9qzO72HOpNAWMdi6gm6j_l](https://drive.google.com/drive/u/1/folders/1NX3kSLhHYm9qzO72HOpNAWMdi6gm6j_l)
 
 ---
 
@@ -33,13 +32,13 @@ If you wish to build GWACalc from the source code, follow these steps:
 1.  **Clone the Repository:**
     Open your terminal or command prompt and clone the GWACalc repository:
     ```bash
-    git clone [https://github.com/OharaDev/GWACalc.git](https://github.com/OharaDev/GWACalc.git)
+    git clone [https://github.com/jamir4270/grade_calculator_app.git)
     ```
 
 2.  **Navigate to the Project Directory:**
     Change your current directory to the cloned project folder:
     ```bash
-    cd GWACalc
+    cd grade_calculator_app
     ```
 
 3.  **Get Dependencies:**
