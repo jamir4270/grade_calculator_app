@@ -154,6 +154,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   bool checkSubjectName(String subjectName) {
+    for (int i = 0; i < GradeDB.gradeList.length; i++) {
+      if (subjectName == GradeDB.gradeList[i][0]) {
+        displaySnackBar("Subject already exists.");
+        return false;
+      }
+    }
+
     if (double.tryParse(subjectName) != null || subjectName.isEmpty) {
       subjectController.clear();
       displaySnackBar("Invalid subject name.");
@@ -182,7 +189,7 @@ class _HomePageState extends State<HomePage> {
       return;
     }
 
-    if (double.parse(unitsText) > 5.0 || double.parse(unitsText) < 1.0) {
+    if (double.parse(unitsText) > 6.0 || double.parse(unitsText) < 1.0) {
       unitsController.clear();
       displaySnackBar("Invalid units input. Adhere to the given range.");
     }
@@ -225,6 +232,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView.builder(
         itemCount: GradeDB.gradeList.length,
+        padding: EdgeInsets.only(bottom: 20.0),
         itemBuilder: (context, index) {
           return GradeTile(
             subjectName: GradeDB.gradeList[index][0],
