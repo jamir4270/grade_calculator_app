@@ -8,7 +8,7 @@ class GradeDataBase {
 
   void intializeMockData() {
     gradeList = [
-      ["FOP", 3.0, 1.5],
+      ["CourseName", 3.0, 1.5],
     ];
   }
 
