@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:grade_calculator_app/components/my_button.dart';
 
 class GradeDialogBox extends StatelessWidget {
@@ -49,8 +50,12 @@ class GradeDialogBox extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: "Subject",
                       hintStyle: TextStyle(color: Colors.grey.shade400),
+                      counterText: "",
                     ),
                     keyboardType: TextInputType.text,
+                    maxLines: 1,
+                    maxLength: 30,
+                    maxLengthEnforcement: MaxLengthEnforcement.enforced,
                   ),
                 ),
               ],
@@ -64,11 +69,15 @@ class GradeDialogBox extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: "1.0 - 6.0",
                       hintStyle: TextStyle(color: Colors.grey.shade400),
+                      counterText: "",
                     ),
                     keyboardType: TextInputType.numberWithOptions(
                       signed: false,
                       decimal: true,
                     ),
+                    maxLines: 1,
+                    maxLength: 4,
+                    maxLengthEnforcement: MaxLengthEnforcement.enforced,
                   ),
                 ),
               ],
@@ -82,11 +91,15 @@ class GradeDialogBox extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: "1.0 - 5.0",
                       hintStyle: TextStyle(color: Colors.grey.shade400),
+                      counterText: "",
                     ),
                     keyboardType: TextInputType.numberWithOptions(
                       signed: false,
                       decimal: true,
                     ),
+                    maxLines: 1,
+                    maxLength: 4,
+                    maxLengthEnforcement: MaxLengthEnforcement.enforced,
                   ),
                 ),
               ],
