@@ -64,9 +64,6 @@ If you wish to build GWACalc from the source code, follow these steps:
 
 ## 🔑 Credits
 
-**Organization:**
-* **OharaDev**
-
 **Developer:**
 * **jamir4270**
 
